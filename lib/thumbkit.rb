@@ -9,7 +9,9 @@ class Thumbkit
     @defaults ||= Thumbkit::Options.new({
       width: 200,
       height: 200,
-      crop: true, # Whether or not we crop to fill the entire thumbnail size
+      # Whether or not we crop to fill the entire thumbnail size.
+      # Only affects images.
+      crop: true,
       # Run `identify -list Gravity` for a list of available options
       gravity: 'Center',
       colors: {
@@ -24,6 +26,10 @@ class Thumbkit
         direction: :auto, # nil, :auto, 'right-to-left', or 'left-to-right'
       },
     })
+  end
+
+  def self.defaults=(options)
+    @defaults += options
   end
 
   def self.processors
